@@ -1,0 +1,16 @@
+body {
+    background-color: white;
+    background-image: url("be4.jpg");
+    background-repeat: no-repeat;
+}
+
+main {
+    color: blue;
+}
+
+footer {
+    position: absolute;
+    top: 90%;
+    left: 10%;
+
+}

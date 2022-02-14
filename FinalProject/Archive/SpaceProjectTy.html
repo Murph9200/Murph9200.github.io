@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <script src="JavaFunctionCode.js"></script>
+    <script src="DataIndex.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <head>
+        <title>
+            UAT Space Assignment
+        </title>
+        <script>
+            //global variable
+            var theTime = new Date();
+            var tempTime = new Date();
+            var time_interval = 5000;
+            var last_iteration = 0;
+            var running = true;
+            var index = 0;
+            var timer;
+
+            //load data into array
+            var data = getData();
+
+            //functions to load data
+            function updateDisplay() {
+                //Gets data from DataIndex to display in the webpage every 10 seconds.
+
+                //indirect address index only works one time needs to be fixed
+                //Problem found at 39:88 need to create spares
+                //data index will fault at index reachs max, need to add more index data
+                var timeRead = data[index].time_seconds;
+                if (timeRead >= 10) {       
+                    document.getElementById("data").rows["seconds"].innerHTML = dataRow("Time Elapsed", data[index].time_seconds, "seconds");
+                    document.getElementById("data").rows["Quadrant1_MCC"].innerHTML = dataRow("Quadrant 0-45 Temperature", data[index].Quadrant1_MCC, " ");
+                    document.getElementById("data").rows["Quadrant2_MCC"].innerHTML = dataRow("Quadrant 45-90 Temperature", data[index].Quadrant2_MCC, " ");
+                    document.getElementById("data").rows["Quadrant3_MCC"].innerHTML = dataRow("Quadrant 90-270 Temperature", data[index].Quadrant3_MCC, "");
+                    document.getElementById("data").rows["Quadrant4_MCC"].innerHTML = dataRow("Quadrant 270-0 Temperature", data[index].Quadrant4_MCC, "");
+                    document.getElementById("data").rows["Internal_Comb_temp"].innerHTML = dataRow("Internal Combustion Temperature", data[index].Internal_Comb_temp, "");
+                    document.getElementById("data").rows["Combustion_Pressure"].innerHTML = dataRow("Main Cumbustion Chamber Pressure", data[index].Combustion_Pressure, "");     
+
+                }
+                // need to add index data to support 200//index holder at 200 for now
+
+                    if (index < 200) {
+                        index++;
+                    } else {
+                        //debugging to see if index was defaulting to zero - added 2 to pull indirect value from second data set
+                        index = 2;
+                    }
+
+            }
+
+        </script>
+    </head>
+    <body>
+        <p class="top">
+            <table class="tableTop">
+                <tr> 
+                    <td> 
+                        <img src="UATspaceLogo.JPG" />
+                    </td>
+                    <td>
+                        <h1>
+                            UAT Space Program
+                        </h1>
+                    </td>
+                </tr>
+            </table>
+        </p>
+        <table id="data" border="2" width="70%" class="table2">
+            <col style="width: 35%;">
+            <col style="width: 35%;">
+            <thead>
+                <tr style="font-family: Arial, Helvetica, sans-serif;">
+                    <th align="centered--">Data Type</th>
+                    <th align="centered--">Reading</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="seconds"></tr>
+                <tr id="Quadrant1_MCC"></tr>
+                <tr id="Quadrant2_MCC"></tr>
+                <tr id="Quadrant3_MCC"></tr>
+                <tr id="Quadrant4_MCC"></tr>
+                <tr id="Internal_Comb_temp"></tr>
+                <tr id="Combustion_Pressure"></tr>
+                <!--spares for now-->
+                <tr id="Spare_FutureUse1"></tr>
+                <tr id="Spare_FutureUse2"></tr>
+                <tr id="Spare_FutureUse4"></tr>
+                <tr id="Spare_FutureUse5"></tr>
+                <tr id="Spare_FutureUse5"></tr>
+                <tr id="Spare_FutureUse6"></tr>
+            </tbody>
+        </table>
+        <br>
+        <input id="startButton" type="button" value="Start" onclick="start();" class="button" />
+        <input id="stopButton" type="button" value="Stop" onclick="stop();" disabled=true class="button" />
+        <br>
+        <br>
+        The time is: <div id="time"></div>
+    </body>
+</html>

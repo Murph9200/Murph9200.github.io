@@ -1,0 +1,23 @@
+body {
+    background-color: white;
+    background-image: url("WorkLaunch.gif");
+    background-repeat: no-repeat;
+}
+
+.button {
+    background-color: white;
+    width: 100px;
+    height: 30px;
+    border-radius: 12px;
+    border-color: lightblue;
+}
+
+.table2 {
+    background-image:radial-gradient(white, blue);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.table3 {
+    background-image: radial-gradient (white, blue);
+    background-color: white;
+}
